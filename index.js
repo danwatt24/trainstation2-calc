@@ -13,7 +13,6 @@ function camelCaseToWords(name) {
 
 function displayRecipe(recipeName, recipe) {
   const container = document.getElementById("recipe");
-  container.style.display = "initial";
   container.querySelector("#recipeName").innerHTML = camelCaseToWords(recipeName);
 
   const ingredientsContainer = container.querySelector("#ingredients");
@@ -32,17 +31,37 @@ function displayRecipe(recipeName, recipe) {
     ingredientContainer.appendChild(ingredientDisplay);
     ingredientsContainer.appendChild(ingredientContainer);
   });
+}
 
+function getParsedValue(id, options = {}) {
+  options = {
+    defaultValue: 0,
+    updateElement: true,
+    ...options,
+  };
+
+  const {
+    defaultValue,
+    updateElement,
+  } = options;
+  const el = document.getElementById(id);
+  const value = parseInt(el.value) || defaultValue;
+  if (updateElement) el.value = value;
+  return value;
 }
 
 function changeEvent(ev) {
-  const value = ev.target.value;
-  if (!value) return;
+  const desired = getParsedValue("amountNeeded");
+  if (!desired) return;
+
+  const available = getParsedValue("inventory");
   const recipe = selectedRecipe;
   const recipeName = selectedRecipeName;
 
   const ingredients = recipe.ingredients;
-  const needed = Math.ceil(value / recipe.amount);
+
+  const required = Math.max(desired - available, 0);
+  const needed = Math.ceil(required / recipe.amount);
 
   const results = {};
   objectMapper(ingredients, (name, amount) => {
@@ -73,7 +92,6 @@ function categoriesSelectedEvent(e) {
   selectedCategory = recipes[categoryName];
 
   const categorySelect = document.getElementById("category");
-  categorySelect.style.display = "initial";
   addOptionsToSelect(categorySelect, Object.keys(selectedCategory));
 }
 
@@ -112,6 +130,7 @@ function calcSelectSize() {
 
 window.onload = () => {
   addEventListeners("amountNeeded", changeEvent);
+  addEventListeners("inventory", changeEvent);
   const categories = addEventListeners("categories", categoriesSelectedEvent);
   addOptionsToSelect(categories, Object.keys(recipes));
   const category = addEventListeners("category", categorySelectedEvent);
