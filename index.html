@@ -3,21 +3,34 @@
 <head></head>
 
 <body>
-  <!-- <table id="recipes"></table> -->
-  <div id="recipes">
-    <select id="categories" style="width:200px;"></select>
-    <select id="category" style="width:200px"></select>
-    <div id="recipe">
-      <div style="margin-bottom:10px; margin-top:10px;">
-        <label>Needed <input type="number" id="amountNeeded" value="1" /></label>
-      </div>
-      <div>
-        <label>In Inventory <input type="number" id="inventory" value="0" /></label>
-      </div>
-      <div id="recipeName" style="margin-top:10px;"></div>
-      <div id="ingredients" style="display:flex;margin-bottom:10px;margin-top:10px"></div>
-    </div>
-  </div>
+  <strong>Smelting Plant</strong>
+  <table>
+    <tr>
+      <th>Steel</th>
+      <td>Inventory <input type="number" name="steel" class="inventory" /></td>
+      <td>Belt <input type="number" name="steel" class="belt" /></td>
+      <td>Needed <input type="number" name="steel" class="needed" value="1" /></td>
+    </tr>
+    <tr>
+      <th>Iron Ore</th>
+      <td>Inventory <input type="number" name="ironOre" class="inventory" for="steel" /></td>
+      <td></td>
+      <td>Needed <span name="ironOre" class="needed" for="steel">0</span></td>
+    </tr>
+    <tr>
+      <th>Coal</th>
+      <td>Inventory <input type="number" name="coal" class="inventory" for="steel" /></td>
+      <td></td>
+      <td>Needed <span name="coal" class="needed" for="steel">0</span></td>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <td></td>
+      <td></td>
+      <td>Needed <span name="time" class="needed" for="steel">0</span> minute(s)</td>
+    </tr>
+  </table>
+  <script src="helpers.js"></script>
   <script src="recipes.js"></script>
   <script src="index.js"></script>
 </body>
