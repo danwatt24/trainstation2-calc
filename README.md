@@ -1,11 +1,6 @@
 Simple Trainstation2 resource calculator
 
 TODOS:
-  - add another recipe
-  - simplify onload function
-  - refactor
-  - add a recipe that is dependent on a previous recipe
-  - refactor
   - add more recipes
   - hopefully drive out a pattern that scales but is also easily consumable
 

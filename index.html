@@ -3,7 +3,9 @@
 <head></head>
 
 <body>
+  <div id="recipes"></div>
   <strong>Smelting Plant</strong>
+  <table name="steel"></table>
   <table>
     <tr>
       <th>Steel</th>
@@ -56,7 +58,30 @@
       <td>Needed <span name="time" class="needed" for="copper">0</span> minute(s)</td>
     </tr>
   </table>
+  <strong>Iron Mill</strong>
+  <table>
+    <tr>
+      <th>Nails</th>
+      <td>Inventory <input type="number" name="nails" class="inventory" /></td>
+      <td>Belt <input type="number" name="nails" class="belt" /></td>
+      <td>Needed <input type="number" name="nails" class="needed" value="1" /></td>
+    </tr>
+    <tr>
+      <th>Steel</th>
+      <td>Inventory <input type="number" name="steel" class="inventory" for="nails" /></td>
+      <td></td>
+      <td>Needed <span name="steel" class="needed" for="nails">0</span></td>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <td></td>
+      <td></td>
+      <td>Needed <span name="time" class="needed" for="nails">0</span> minute(s)</td>
+    </tr>
+  </table>
   <script src="helpers.js"></script>
+  <script src="smeltingPlant.js"></script>
+  <script src="ironMill.js"></script>
   <script src="recipes.js"></script>
   <script src="index.js"></script>
 </body>
