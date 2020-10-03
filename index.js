@@ -1,31 +1,9 @@
-function calculateChanges(recipe, needed, supply, availableIngredients) {
-
-}
-
-function steelNeededChanged(steelNeeded, steelSupply, forSteel) {
-  const recipe = {
-    name: 'steel',
-    produces: 40,
-    ingredients: [{
-        name: "ironOre",
-        amount: 10,
-      },
-      {
-        name: "coal",
-        amount: 30,
-      },
-      {
-        name: "time",
-        amount: 5,
-      }
-    ]
-  };
-
-  const have = steelSupply.sum();
-  const required = steelNeeded.value || 0;
+function neededChanged(recipe, required, supply, forIngreds) {
+  required = required.value || 0;
+  const have = supply.sum();
   const needed = Math.ceil(Math.max(required - have, 0) / recipe.produces);
 
-  const available = forSteel.reduce((obj, el) => {
+  const available = forIngreds.reduce((obj, el) => {
     obj[el.name] = el.value || 0;
     return obj;
   }, {});
@@ -40,20 +18,21 @@ function steelNeededChanged(steelNeeded, steelSupply, forSteel) {
 }
 
 window.onload = () => {
-  const steelNeeded = [];
-  const steelSupply = [];
-  const forSteel = [];
-  const callback = () => steelNeededChanged(steelNeeded[0], steelSupply, forSteel);
-  const selector = "input[name='steel'], input[for='steel']";
-  for (const input of [...document.querySelectorAll(selector)]) {
-    input.addEventListener("change", callback);
-    input.addEventListener("keyup", callback);
-    if (input.className === "needed")
-      steelNeeded.push(input);
-    else if (input.getAttribute('for'))
-      forSteel.push(input);
-    else
-      steelSupply.push(input);
+  for (const recipe of recipes) {
+    const needed = [];
+    const supply = [];
+    const forIngreds = [];
+    const callback = () => neededChanged(recipe, needed[0], supply, forIngreds);
+    const selector = `input[name='${recipe.name}'], input[for='${recipe.name}']`;
+    for (const input of [...document.querySelectorAll(selector)]) {
+      input.addEventListener("change", callback);
+      input.addEventListener("keyup", callback);
+      if (input.className === "needed")
+        needed.push(input);
+      else if (input.getAttribute('for'))
+        forIngreds.push(input);
+      else
+        supply.push(input);
+    }
   }
-
 };
