@@ -1,89 +1,33 @@
 <html>
-
-<head></head>
-
-<body>
-  <div id="recipes"></div>
-  <strong>Smelting Plant</strong>
-  <table name="steel"></table>
-  <table>
-    <tr>
-      <th>Steel</th>
-      <td>Inventory <input type="number" name="steel" class="inventory" /></td>
-      <td>Belt <input type="number" name="steel" class="belt" /></td>
-      <td>Needed <input type="number" name="steel" class="needed" value="1" /></td>
-    </tr>
-    <tr>
-      <th>Iron Ore</th>
-      <td>Inventory <input type="number" name="ironOre" class="inventory" for="steel" /></td>
-      <td></td>
-      <td>Needed <span name="ironOre" class="needed" for="steel">0</span></td>
-    </tr>
-    <tr>
-      <th>Coal</th>
-      <td>Inventory <input type="number" name="coal" class="inventory" for="steel" /></td>
-      <td></td>
-      <td>Needed <span name="coal" class="needed" for="steel">0</span></td>
-    </tr>
-    <tr>
-      <th>Time</th>
-      <td></td>
-      <td></td>
-      <td>Needed <span name="time" class="needed" for="steel">0</span> minute(s)</td>
-    </tr>
-  </table>
-  <table>
-    <tr>
-      <th>Copper</th>
-      <td>Inventory <input type="number" name="copper" class="inventory" /></td>
-      <td>Belt <input type="number" name="copper" class="belt" /></td>
-      <td>Needed <input type="number" name="copper" class="needed" value="1" /></td>
-    </tr>
-    <tr>
-      <th>Copper Ore</th>
-      <td>Inventory <input type="number" name="copperOre" class="inventory" for="copper" /></td>
-      <td></td>
-      <td>Needed <span name="copperOre" class="needed" for="copper">0</span></td>
-    </tr>
-    <tr>
-      <th>Coal</th>
-      <td>Inventory <input type="number" name="coal" class="inventory" for="coal" /></td>
-      <td></td>
-      <td>Needed <span name="coal" class="needed" for="copper">0</span></td>
-    </tr>
-    <tr>
-      <th>Time</th>
-      <td></td>
-      <td></td>
-      <td>Needed <span name="time" class="needed" for="copper">0</span> minute(s)</td>
-    </tr>
-  </table>
-  <strong>Iron Mill</strong>
-  <table>
-    <tr>
-      <th>Nails</th>
-      <td>Inventory <input type="number" name="nails" class="inventory" /></td>
-      <td>Belt <input type="number" name="nails" class="belt" /></td>
-      <td>Needed <input type="number" name="nails" class="needed" value="1" /></td>
-    </tr>
-    <tr>
-      <th>Steel</th>
-      <td>Inventory <input type="number" name="steel" class="inventory" for="nails" /></td>
-      <td></td>
-      <td>Needed <span name="steel" class="needed" for="nails">0</span></td>
-    </tr>
-    <tr>
-      <th>Time</th>
-      <td></td>
-      <td></td>
-      <td>Needed <span name="time" class="needed" for="nails">0</span> minute(s)</td>
-    </tr>
-  </table>
-  <script src="helpers.js"></script>
-  <script src="smeltingPlant.js"></script>
-  <script src="ironMill.js"></script>
-  <script src="recipes.js"></script>
-  <script src="index.js"></script>
-</body>
-
+  <head></head>
+  <body>
+    <div>
+      <div style="width:50%; float:left"> <!-- recipes -->
+        <div>
+          <label><input type="checkbox" id="ironPowderInclude" /> Iron Powder</label>
+          <input type="text" id="ironPowderWanted" disabled />
+        </div>
+        <div>
+          <label><input type="checkbox" id="steelInclude" /> Steel</label>
+          <input type="text" id="steelWanted" disabled />
+        </div>
+        <div>
+          <label><input type="checkbox" id="nailsInclude" /> Nails</label>
+          <input type="text" id="nailsWanted" disabled />
+        </div>
+      </div>
+      <div> <!-- shopping list -->
+        <div id="ironOreLabel" style="display:none">
+          Iron Ore <span id="ironOreNeeded"></span>
+        </div>
+        <div id="coalLabel" style="display:none">
+          Coal <span id="coalNeeded"></span>
+        </div>
+        <div id="steelLabel" style="display:none">
+          Steel <span id="steelNeeded"></span>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
 </html>
